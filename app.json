@@ -13,10 +13,10 @@
    },
    "platforms": ["ios", "android"],
    "ios": {
-     "bundleIdentifier": "io.bytes.surfer"
+     "bundleIdentifier": "io.bytes.surftest"
    },
    "android": {
-     "package": "io.bytes.surfer"
+     "package": "io.bytes.surftest"
    }
   }
 }
