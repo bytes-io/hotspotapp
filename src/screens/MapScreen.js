@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, TextInput, Text, ScrollView, Image} from 'react-native';
+import SocketIOClient from 'socket.io-client';
+
 import {Styles} from "../Config/CommonStyles";
 import Button from "../components/Button";
 import Map from "../components/Map";
@@ -14,6 +16,7 @@ class MapScreen extends React.Component {
             buyModeActive : false,
             sellModeActive: true,
         };
+        this.socket = null;
     }
 
 
@@ -22,6 +25,19 @@ class MapScreen extends React.Component {
             buyModeActive: true,
             sellModeActive: false,
         });
+        if (!this.socket) {
+            this.socket = SocketIOClient('http://192.168.12.1:3000');
+            this.socket.on('connect', function(){
+                console.log('connected')
+            });
+            this.socket.on('event', function(data){
+                console.log('event', data)
+            });
+            this.socket.on('disconnect', function(){
+                console.log('disconnected')
+            });
+        }
+
     }
 
     sellButtonPress(){
@@ -30,6 +46,12 @@ class MapScreen extends React.Component {
             buyModeActive: false,
             sellModeActive: true,
         });
+
+        if (this.socket) {
+            this.socket.close()
+            this.socket = null
+        }
+
     }
 
     render() {
