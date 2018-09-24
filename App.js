@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Platform} from 'react-native'
 import {StackNavigator, TabNavigator, DrawerNavigator} from 'react-navigation';
+
 import Menu from "./src/screens/Menu";
 import MapScreen from "./src/screens/MapScreen";
 import SurferScreen from "./src/screens/SurferScreen";
